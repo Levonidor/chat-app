@@ -3,4 +3,4 @@ from .cfg import *
 
 def sex():
     print(TOKEN)
-    print("commit")
+    print("co")
