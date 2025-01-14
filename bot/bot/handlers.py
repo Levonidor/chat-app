@@ -10,21 +10,11 @@ from aiogram import Router
 from aiogram.filters import Command
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
+from .cfg import default
+from .utils import building_keyboard
+
+
 router = Router()
-default = ['Привет', 'Пока']
-
-
-def building_keyboard(custom=default):
-    kb = ReplyKeyboardBuilder()
-    for element in custom:
-        kb.button(text=element)
-    kb.adjust(1, len(custom))
-    return kb.as_markup(resize_keyboard=True)
-
-#example of using:      await msg.answer("", reply_markup=building_keyboard())
-
-class update(StatesGroup):
-    smth = State
 
 @router.message(Command('start'))
 async def start_handler(msg: Message, state: FSMContext) -> None:

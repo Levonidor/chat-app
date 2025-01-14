@@ -1,6 +1,15 @@
-from services.script import *
-from services.handlers import *
+from bot.bot.services.handlers import (
+    MemoryStorage,
+    router,
+    Dispatcher,
+    Bot,
+    logging,
+    asyncio,
+)
+from bot.bot.utils import get_token
 
+
+BOT_TOKEN = get_token()
 
 
 async def main():
