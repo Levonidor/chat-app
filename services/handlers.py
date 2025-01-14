@@ -12,12 +12,7 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
 router = Router()
 default = ['Привет', 'Пока']
-'''kb = ReplyKeyboardBuilder()
-        kb.button(text="Таблица пользователей")
-        kb.button(text="Очистить таблицу")
-        kb.button(text="Ответить пользователю")
-        kb.adjust(1, 1, 1)
-        await msg.answer("Доступные Команды", reply_markup=kb.as_markup(resize_keyboard=True))'''
+
 
 def building_keyboard(custom=default):
     kb = ReplyKeyboardBuilder()
@@ -25,6 +20,8 @@ def building_keyboard(custom=default):
         kb.button(text=element)
     kb.adjust(1, len(custom))
     return kb.as_markup(resize_keyboard=True)
+
+#example of using:      await msg.answer("", reply_markup=building_keyboard())
 
 class update(StatesGroup):
     smth = State
@@ -35,7 +32,7 @@ async def start_handler(msg: Message, state: FSMContext) -> None:
         await msg.answer("Привет, администратор")
     else:
         await msg.answer("hello")
-        await msg.answer("choose", reply_markup=building_keyboard())
+
 
 
 @router.message(Command('menu'))
