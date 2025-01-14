@@ -6,8 +6,8 @@ import os.path
 
 
 def check_pathes() -> bool:
-    if not os.path.isdir('./userdata'):
-        os.mkdir('./userdata')
+    if not os.path.isdir("./userdata"):
+        os.mkdir("./userdata")
 
 
 def check_user(user_id: str) -> None:
@@ -18,20 +18,41 @@ def check_user(user_id: str) -> None:
     True: if files were created before.
     """
     check_pathes()
-    if not os.path.exists(f'./userdata/{user_id}.csv'):
-        pd.DataFrame(columns=USERDATA_COLUMNS).to_csv(f'./userdata/{user_id}.csv',index=False)
+    if not os.path.exists(f"./userdata/{user_id}.csv"):
+        pd.DataFrame(columns=USERDATA_COLUMNS).to_csv(
+            f"./userdata/{user_id}.csv", index=False
+        )
         return False
     return True
 
-def add_timestamp(user_id: str, activity: str, time: datetime) -> None:
+
+def add_timestamp(
+    user_id: str, activity_type: str, activity_name: str, time: datetime
+) -> None:
     check_user(user_id)
-    user = pd.read_csv(f'./userdata/{user_id}.csv')
-    user.loc[len(user)] = [str(activity), str(time)]
-    user.to_csv(f'./userdata/{user_id}.csv',index=False)
+    user = pd.read_csv(f"./userdata/{user_id}.csv")
+    time = datetime.strptime(time,r"%Y-%m-%d %H:%M:%S")
+    if len(user) != 0:
+        user.loc[len(user)-1] = [
+            user.at[len(user) - 1, USERDATA.TYPE],
+            user.at[len(user) - 1, USERDATA.NAME],
+            user.at[len(user) - 1, USERDATA.TIMESTAMP],
+            time - datetime.strptime(user.at[len(user) - 1, USERDATA.TIMESTAMP],r"%Y-%m-%d %H:%M:%S"),
+        ]
+    user.loc[len(user)] = [str(activity_type), str(activity_name), str(time), 0]
+    user.to_csv(f"./userdata/{user_id}.csv", index=False)
+
 
 def remove_last_timestamp(user_id: str) -> None:
     if not check_user(user_id):
         return Exception("Nothing to delete")
-    user = pd.read_csv(f'./userdata/{user_id}.csv')
+    user = pd.read_csv(f"./userdata/{user_id}.csv")
     user = user.iloc[:-1]
-    user.to_csv(f'./userdata/{user_id}.csv',index=False)
+    if len(user) != 0:
+        user.loc[len(user)-1] = [
+            user.at[len(user) - 1, USERDATA.TYPE],
+            user.at[len(user) - 1, USERDATA.NAME],
+            user.at[len(user) - 1, USERDATA.TIMESTAMP],
+            0,
+        ]
+    user.to_csv(f"./userdata/{user_id}.csv", index=False)
