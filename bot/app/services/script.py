@@ -4,7 +4,6 @@ import pandas as pd
 from ..utils import check_user
 import os.path
 
-
 def add_timestamp(
     user_id: str, activity_type: str, activity_name: str, time: str
 ) -> None:

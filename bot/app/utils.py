@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 import pandas as pd
 import os
 from bot.app.cfg import default_keyboard
+from .services.columns import USERDATA_COLUMNS
+from .handlers import ReplyKeyboardBuilder
 
 def build_keyboard(custom: list[str] = default_keyboard):
     kb = ReplyKeyboardBuilder()

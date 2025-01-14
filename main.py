@@ -8,6 +8,9 @@ from bot.app.handlers import (
 )
 from bot.app.utils import get_token
 
+# imports for testing 
+from bot.app.services.script import add_timestamp,remove_last_timestamp
+from datetime import *
 
 BOT_TOKEN = get_token()
 
@@ -23,3 +26,7 @@ async def main():
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     asyncio.run(main())
+
+    # testing features
+    # add_timestamp('456','Work','Помогите нахуй', datetime.now().strftime(r"%Y-%m-%d %H:%M:%S"))
+    # remove_last_timestamp('456')

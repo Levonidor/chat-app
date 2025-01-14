@@ -1,4 +1,3 @@
-from .token import BOT_TOKEN, ADMIN_ID
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher

@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import Mock, patch
 from app.services.bot import Bot  # Assuming you have a Bot class in bot.py
-from bot.services.handlers import handle_start, handle_help  # Assuming these handlers exist
+from bot.app.handlers import handle_start, handle_help  # Assuming these handlers exist
 
 @pytest.fixture
 def bot():
