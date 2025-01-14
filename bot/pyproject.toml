@@ -11,6 +11,7 @@ pandas = "2.2.3"
 asyncio = "3.4.3"
 logging-tree = "1.10"
 aiogram = "3.17.0"
+python-dotenv = "1.0.1"
 
 
 [build-system]

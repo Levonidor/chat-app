@@ -1,5 +1,5 @@
 from .token import TOKEN
-from .cfg import *
+from .columns import *
 
 def sex():
     print(TOKEN)

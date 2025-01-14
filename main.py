@@ -1,6 +1,9 @@
 from services.script import *
 from services.handlers import *
+from bot.bot.utils import get_token
 
+
+BOT_TOKEN = get_token()
 
 
 async def main():

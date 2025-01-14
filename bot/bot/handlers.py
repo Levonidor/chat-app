@@ -10,24 +10,12 @@ from aiogram import Router
 from aiogram.filters import Command
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
+from .cfg import default
+from .utils import building_keyboard
+
+
 router = Router()
-default = ['Привет', 'Пока']
-'''kb = ReplyKeyboardBuilder()
-        kb.button(text="Таблица пользователей")
-        kb.button(text="Очистить таблицу")
-        kb.button(text="Ответить пользователю")
-        kb.adjust(1, 1, 1)
-        await msg.answer("Доступные Команды", reply_markup=kb.as_markup(resize_keyboard=True))'''
 
-def building_keyboard(custom=default):
-    kb = ReplyKeyboardBuilder()
-    for element in custom:
-        kb.button(text=element)
-    kb.adjust(1, len(custom))
-    return kb.as_markup(resize_keyboard=True)
-
-class update(StatesGroup):
-    smth = State
 
 @router.message(Command('start'))
 async def start_handler(msg: Message, state: FSMContext) -> None:

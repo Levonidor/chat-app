@@ -1,29 +1,9 @@
-from .cfg import *
+from .columns import *
 from datetime import datetime
 import pandas as pd
-
+from ..utils import check_user
 import os.path
 
-
-def check_pathes() -> bool:
-    if not os.path.isdir("./userdata"):
-        os.mkdir("./userdata")
-
-
-def check_user(user_id: str) -> None:
-    """
-    Check if there is a files with this user data. And creates them if they weren't created before.
-
-    False: if files were created now.
-    True: if files were created before.
-    """
-    check_pathes()
-    if not os.path.exists(f"./userdata/{user_id}.csv"):
-        pd.DataFrame(columns=USERDATA_COLUMNS).to_csv(
-            f"./userdata/{user_id}.csv", index=False
-        )
-        return False
-    return True
 
 
 def add_timestamp(
@@ -31,7 +11,7 @@ def add_timestamp(
 ) -> None:
     check_user(user_id)
     user = pd.read_csv(f"./userdata/{user_id}.csv")
-    time = datetime.strptime(time,r"%Y-%m-%d %H:%M:%S")
+    time = datetime.strptime(time, r"%Y-%m-%d %H:%M:%S") #! THIS WILL RAISE AND ERROR)
     if len(user) != 0:
         user.loc[len(user)-1] = [
             user.at[len(user) - 1, USERDATA.TYPE],
@@ -39,13 +19,14 @@ def add_timestamp(
             user.at[len(user) - 1, USERDATA.TIMESTAMP],
             time - datetime.strptime(user.at[len(user) - 1, USERDATA.TIMESTAMP],r"%Y-%m-%d %H:%M:%S"),
         ]
-    user.loc[len(user)] = [str(activity_type), str(activity_name), str(time), 0]
+    user.loc[len(user)] = [activity_type, activity_name, str(time), 0]
     user.to_csv(f"./userdata/{user_id}.csv", index=False)
 
 
 def remove_last_timestamp(user_id: str) -> None:
     if not check_user(user_id):
-        return Exception("Nothing to delete")
+        raise ValueError("Nothing to delete")
+
     user = pd.read_csv(f"./userdata/{user_id}.csv")
     user = user.iloc[:-1]
     if len(user) != 0:
@@ -55,4 +36,5 @@ def remove_last_timestamp(user_id: str) -> None:
             user.at[len(user) - 1, USERDATA.TIMESTAMP],
             0,
         ]
+
     user.to_csv(f"./userdata/{user_id}.csv", index=False)
