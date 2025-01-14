@@ -1,6 +1,7 @@
 
 from functools import cache
 from dotenv import load_dotenv
+import pandas as pd
 import os
 
 def building_keyboard(custom: list[str] = default):
