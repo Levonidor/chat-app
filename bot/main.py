@@ -1,4 +1,4 @@
-from bot.app.handlers import (
+from app.handlers import (
     MemoryStorage,
     router,
     Dispatcher,
@@ -6,7 +6,7 @@ from bot.app.handlers import (
     logging,
     asyncio,
 )
-from bot.app.utils import get_token
+from app.utils import get_token
 
 # imports for testing 
 from bot.app.services.script import add_timestamp,remove_last_timestamp

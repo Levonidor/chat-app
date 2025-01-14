@@ -3,9 +3,7 @@ from functools import cache
 from dotenv import load_dotenv
 import pandas as pd
 import os
-from bot.app.cfg import default_keyboard
-from .services.columns import USERDATA_COLUMNS
-from .handlers import ReplyKeyboardBuilder
+from app.cfg import default_keyboard
 
 def build_keyboard(custom: list[str] = default_keyboard):
     kb = ReplyKeyboardBuilder()
