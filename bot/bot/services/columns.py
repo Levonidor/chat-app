@@ -1,4 +1,4 @@
-from enum import StrEnum, IntEnum
+from enum import StrEnum
 
 USERDATA_COLUMNS = [
     "ACTIVITY_TYPE",
@@ -8,7 +8,7 @@ USERDATA_COLUMNS = [
 ]
 
 class USERDATA(StrEnum):
-    TYPE = "ACTIVITY_TYPE",
-    NAME = "ACTIVITY_NAME",
-    TIMESTAMP = 'TIMESTAMP',
+    TYPE = "ACTIVITY_TYPE"
+    NAME = "ACTIVITY_NAME"
+    TIMESTAMP = 'TIMESTAMP'
     DURATION = "DURATION"

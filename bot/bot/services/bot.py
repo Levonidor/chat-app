@@ -1,5 +1,6 @@
-from .token import TOKEN
-from .columns import *
+from ..utils import get_token
+
+
 
 def sex():
-    print(TOKEN)
+    print(get_token())
