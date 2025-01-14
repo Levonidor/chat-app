@@ -6,7 +6,7 @@ from typing import List, Optional
 import pandas as pd
 from dotenv import load_dotenv
 
-from bot.app.cfg import default_keyboard
+from app.cfg import default_keyboard
 from .handlers import ReplyKeyboardBuilder
 from .services.columns import USERDATA_COLUMNS
 
