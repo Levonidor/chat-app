@@ -3,8 +3,9 @@ from functools import cache
 from dotenv import load_dotenv
 import pandas as pd
 import os
+from bot.app.cfg import default_keyboard
 
-def building_keyboard(custom: list[str] = default):
+def build_keyboard(custom: list[str] = default_keyboard):
     kb = ReplyKeyboardBuilder()
     for element in custom:
         kb.button(text=element)
@@ -13,7 +14,7 @@ def building_keyboard(custom: list[str] = default):
 
 
 def check_pathes() -> bool:
-    if not os.path.isdir("./userdata"):
+    if not os.path.exists("./userdata"):
         os.mkdir("./userdata")
 
 def check_user(user_id: str) -> None:

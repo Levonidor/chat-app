@@ -1,4 +1,4 @@
-from bot.bot.services.handlers import (
+from bot.app.handlers import (
     MemoryStorage,
     router,
     Dispatcher,
@@ -6,7 +6,7 @@ from bot.bot.services.handlers import (
     logging,
     asyncio,
 )
-from bot.bot.utils import get_token
+from bot.app.utils import get_token
 
 
 BOT_TOKEN = get_token()

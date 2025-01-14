@@ -10,8 +10,8 @@ from aiogram import Router
 from aiogram.filters import Command
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
-from .cfg import default
-from .utils import building_keyboard
+from .cfg import default_keyboard
+from .utils import build_keyboard
 
 
 router = Router()
